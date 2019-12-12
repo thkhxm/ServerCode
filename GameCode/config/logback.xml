@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->  
+    <!-- <property name="LOG_HOME" value="/game/server/logs" />   -->
+    <property name="LOG_HOME" value="D:\log" />
+
+    <!-- 控制台输出 -->   
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+       <!-- 日志输出编码 -->  
+       <!-- <Encoding>UTF-8</Encoding>    -->
+        <layout class="ch.qos.logback.classic.PatternLayout">   
+             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <!-- <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n    -->
+            <!-- <pattern> %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %caller{1} - %msg%n </pattern>    -->
+             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80} [%file:%line] %msg %n</pattern>  
+        </layout>   
+    </appender>   
+
+    <!-- 按照每天生成日志文件 -->   
+    <appender name="ALL_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+        <File>${LOG_HOME}/all_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/all_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>
+       </layout> 
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter"><!-- 只打印DEBUG日志 -->
+        <level>INFO</level>
+        </filter>
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+
+  <!-- 按照每天生成日志文件 -->   
+    <appender name="LOGIC_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+        <File>${LOG_HOME}/logic_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/logic_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level - %msg%n
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+
+  <!-- 按照每天生成日志文件 -->   
+    <appender name="BOSS_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+       <File>${LOG_HOME}/boss_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/boss_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+
+  <!-- 按照每天生成日志文件 -->   
+    <appender name="SERVER_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+        <File>${LOG_HOME}/server_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/server_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+
+  <!-- 按照每天生成日志文件 -->   
+    <appender name="NET_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+        <File>${LOG_HOME}/net_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/net_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level - %msg%n 
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+
+    <!-- 按照每天生成日志文件 -->   
+    <appender name="ERROR_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>false</Prudent> 
+        <File>${LOG_HOME}/error_${appName}.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+<!-- rollover daily -->
+        <FileNamePattern>${LOG_HOME}/error_${appName}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+        <!-- keep 30 days' worth of history -->
+        <MaxHistory>90</MaxHistory>
+        <!-- or whenever the file size reaches 10MB -->
+        <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>1024MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>   
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印DEBUG日志 -->
+        <level>ERROR</level>
+        <onMatch>ACCEPT</onMatch>
+        <onMismatch>DENY</onMismatch>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender>
+
+     <appender name="AILogFile"  class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+        <!-- <Encoding>UTF-8</Encoding>    -->
+        <Prudent>true</Prudent> 
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/AiLog.log.%d{yyyy-MM-dd}.log</FileNamePattern>   
+            <MaxHistory>31</MaxHistory>
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n   
+            </pattern>
+       </layout> 
+        <!--日志文件最大的大小-->
+       <!-- <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+         <MaxFileSize>10MB</MaxFileSize>
+       </triggeringPolicy> -->
+    </appender> 
+   <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->  <!-- 
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder"  level="TRACE" />  
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor"  level="DEBUG" />  
+    <logger name="org.hibernate.SQL" level="DEBUG" />  
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />  
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />   -->
+  
+    <logger name="ailog" level="TRACE">
+<!--        <appender-ref ref="AILogFile"/>-->
+    </logger>
+    <logger name="logic" level="TRACE">
+<!--        <appender-ref ref="LOGIC_FILE"/>-->
+    </logger>
+    <logger name="boss" level="TRACE">
+<!--        <appender-ref ref="BOSS_FILE"/>-->
+    </logger>
+    <logger name="server" level="DEBUG">
+<!--        <appender-ref ref="SERVER_FILE"/>-->
+        <!-- <appender-ref ref="STDOUT" /> -->
+    </logger>
+    <logger name="net" level="TRACE">
+<!--        <appender-ref ref="NET_FILE"/>-->
+    </logger>
+
+    <!-- 日志输出级别 默认只打印info级别以上的日志-->
+    <root level="TRACE">
+        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="ALL_FILE" />-->
+<!--        <appender-ref ref="ERROR_FILE" />-->
+    </root> 
+     
+     <!--日志异步到数据库 -->  
+    <!-- <appender name="DB" class="ch.qos.logback.classic.db.DBAppender"> -->
+        <!--日志异步到数据库 --> 
+        <!-- <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource"> -->
+           <!--连接池 --> 
+           <!-- <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+              <driverClass>com.mysql.jdbc.Driver</driverClass>
+              <url>jdbc:mysql://127.0.0.1:3306/databaseName</url>
+              <user>root</user>
+              <password>root</password>
+            </dataSource>
+        </connectionSource> -->
+  <!-- </appender>  -->
+</configuration>
